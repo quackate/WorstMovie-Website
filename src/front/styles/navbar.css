@@ -1,17 +1,19 @@
-nav{
-    background-color: rgb(37, 19, 19);
-    border-style: groove;
-    box-shadow: 1px 4px 15px rgb(164, 223, 208)
-   
+nav {
+    background-color: rgb(27, 27, 27);
 }
-nav{
-    border-radius: 15%;
-}
-.btn{
+
+/*.btn{
     border-radius: 15%;
     text-shadow: 0 0 10px rgb(241, 242, 247),0 0 40px rgb(247, 248, 252),
     0 0 80px rgb(227, 228, 235);
     transition-delay: 1s;
+}*/
+
+.nav-login-btn {
+    font-family: 'Bungee';
+    background-color: rgb(255, 245, 169);
+    box-shadow: 2px 2px 11px rgba(255, 246, 182, 0.675);
+    border-radius: 20px;
 }
 
 .logo {
@@ -21,8 +23,42 @@ nav{
 
 .subtitle {
     font-family: 'Bungee';
-    color: rgb(254, 254, 123);
-    text-shadow: 0 0 20px rgb(255, 249, 203);
+    color: rgb(250, 255, 226);
+    text-shadow: 0 0 12px rgba(253, 255, 242, 0.712);
     font-size: 22px;
-    background-color: rgba(43, 40, 40, 0.737);
+    background-color: rgba(46, 46, 46, 0.737);
+    border-top: solid;
+    border-color: grey;
+    border-width: 1.5px;
+}
+
+.more-genres {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+}
+
+.more-genres:hover {
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    text-shadow: 0 0 10px rgba(254, 254, 254, 0.497);
+}
+
+.search-input {
+    color: rgb(230, 230, 230);
+    background-color: rgb(56, 52, 52);
+    border-radius: 20px;
+    border-color: grey;
+}
+
+.btn-search {
+    border-radius: 20px;
+}
+
+.btn-search i {
+    text-shadow: 0 0 10px rgba(254, 254, 254, 0.645);
+}
+
+.footer {
+    background-color: rgb(25, 25, 25);
 }

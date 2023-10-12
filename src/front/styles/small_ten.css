@@ -26,7 +26,8 @@
     height: 210px;
     margin: 10px;
     object-fit: cover;
-    object-position: 100% 15%
+    object-position: 100% 15%;
+    border-radius: 20px;
 }
 
 .floating-title {

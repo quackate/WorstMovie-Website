@@ -2,6 +2,7 @@
     position: relative;
     text-align: center;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 .image-wrapper:hover .main-topt-img {
@@ -27,6 +28,7 @@
     height: 500px;
     object-fit: cover;
     object-position: 100% 35%;
+    border-radius: 20px;
 }
 
 .main-floating-title {

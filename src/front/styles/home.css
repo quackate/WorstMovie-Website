@@ -133,7 +133,7 @@ body {
 .sidebar-section {
     background-color: rgb(30, 30, 30);
     /*width: 35%;*/
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .watchlist-items {
@@ -148,6 +148,11 @@ body {
     color: rgba(235, 235, 235, 0.87);
 }
 
+.watchlist-signin-btn {
+    border-radius: 20px;
+    text-shadow: 0 0 15px rgb(255, 255, 255);
+}
+
 .button-link {
     text-decoration: none;
     color: black;
@@ -156,6 +161,11 @@ body {
 .button-link:hover {
     color: black;
     font-weight: bold;
+}
+
+.watchlist-btn {
+    border-radius: 20px;
+    font-family: 'Bungee';
 }
 
 .fa-bookmark {

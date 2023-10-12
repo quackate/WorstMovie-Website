@@ -1,26 +1,86 @@
 .superFormWrappalogin{
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-top: 60px;
-    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 120px;
+    margin-right: 120px;
 }
  
 .superFormWrappa{
  padding-right: 8cm;
 }
 .formWrappal{
-    background-color: hsl(125, 51%, 17%);
     border-radius: 6%;
     padding-top: 20px;
     padding-bottom: 30px;
 }
 
-
-.text-light{
-    text-shadow: 3px 4px 15px rgb(223, 233, 138),5px 9px 30px rgb(208, 211, 184),2px 7px 25px rgb(97, 201, 102);
+.login-logo {
+    height: 120px; 
 }
-.form-control{
-    background-color: rgb(3, 43, 3);
-    box-shadow: 1px 4px 15px rgb(223, 233, 138);
-    border-radius: 25%;
+
+.login-wrapper {
+    border: solid;
+    margin-top: 20px;
+    padding-top: 30px;
+    border-radius: 20px;
+    width: 720px;
+    margin: auto;
+}
+
+
+.text-light {
+    color: rgb(210, 210, 210);
+    text-shadow: 0px 3px 25px rgba(251, 255, 218, 0.782);
+    font-family: 'Press Start 2P';
+    font-weight: bold;
+    font-size: 27px;
+}
+
+.purple-login-title {
+    color: rgb(133, 81, 210);
+    text-shadow: 0 0 40px rgb(210, 194, 233);
+}
+
+.yellow-login-title {
+    color: rgb(255, 245, 169);
+    text-shadow: 0 0 20px rgba(255, 246, 182, 0.871);
+}
+
+.input-texts {
+    color: rgb(205, 205, 205);
+    text-shadow: 2px 0px 15px rgba(251, 255, 218, 0.782);
+    font-family: 'Bungee';
+}
+
+.login-inputs {
+    color: lightgrey;
+    background-color: rgb(30, 30, 30);
+    border-radius: 20px;
+    box-shadow: 1px 4px 15px rgb(71, 41, 107);
+    border-color: grey;
+}
+
+.login-button, .homePage-button {
+    font-family: 'Bungee';
+    background-color: rgb(255, 245, 169);
+    box-shadow: 2px 2px 12px rgba(255, 246, 182, 0.871);
+    border-radius: 20px;
+}
+
+.signup-button {
+    font-family: 'Bungee';
+    background-color: rgb(255, 253, 237);
+    box-shadow: 2px 2px 12px rgba(255, 254, 244, 0.871);
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    .login-wrapper {
+        width: 600px;
+        margin: auto;
+    }
+    .superFormWrappalogin{
+        margin-left: 80px;
+        margin-right: 80px;
+    }
 }
