@@ -61,7 +61,7 @@ export const Home = () => {
 						<div className="watchlist-items y-scrollbar">
 							{store.token && store.watchlist.length === 0 ? (
 								<div className="empty-watchlist text-center mt-5 mx-4">
-									<i className="fa-solid fa-bookmark fs-1 mb-4"></i>
+									<i className="fa-solid fa-bookmark fs-1 mb-4 watchlist-bookmark"></i>
 									<h3><strong>Your watchlist is empty</strong></h3>
 									<h5>Save some movies you want to watch here!</h5>
 									<button type="button" className="btn btn-light watchlist-btn mt-5"><a className="button-link" href='#movies-selection'>Browse Movies!</a></button>
@@ -102,9 +102,9 @@ export const Home = () => {
 						<MovieCard img_src={movies.poster_path} title={movies.title} rating={movies.vote_average} id={movies.id}/>
 					))}
 				</div>
-				<h1 className="genre-title title mt-5 mb-3"><i className="light-yellow fas fa-caret-right"></i> Drama</h1>
+				<h1 className="genre-title title mt-5 mb-3"><i className="light-yellow fas fa-caret-right"></i> Romance</h1>
 				<div className="movies-by-genre-section h-scrollbar d-flex">
-					{store.drama_movies?.map((movies) => (
+					{store.romance_movies?.map((movies) => (
 						<MovieCard img_src={movies.poster_path} title={movies.title} rating={movies.vote_average} id={movies.id}/>
 					))}
 				</div>

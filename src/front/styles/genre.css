@@ -1,0 +1,19 @@
+.genrepage-wrapper {
+    margin-top: 70px;
+}
+
+.genrepage-title {
+    color: white;
+    font-family: 'Press Start 2P';
+}
+
+.genrepage-purple {
+    color: rgb(133, 81, 210);
+    text-shadow: 0 0 40px rgb(210, 194, 233);
+}
+
+.film-icon {
+    font-size: 50px;
+    color: rgb(255, 242, 140);
+    text-shadow: 0 0 20px rgb(251, 243, 181);
+}

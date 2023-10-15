@@ -29,8 +29,21 @@ const injectContext = PassedComponent => {
 			 * store, instead use actions, like this:
 			 **/
 			state.actions.getHorrorMovies();
-			state.actions.getDramaMovies();
+			state.actions.getRomanceMovies();
 			state.actions.getActionMovies();
+			state.actions.getAdventureMovies();
+			state.actions.getAnimationMovies();
+			state.actions.getComedyMovies();
+			state.actions.getCrimeMovies();
+			state.actions.getDocumentaryMovies();
+			state.actions.getDramaMovies();
+			state.actions.getFamilyMovies();
+			state.actions.getFantasyMovies();
+			state.actions.getHistoryMovies();
+			state.actions.getMusicMovies();
+			state.actions.getMysteryMovies();
+			state.actions.getScienceFictionMovies();
+			state.actions.getThrillerMovies();
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

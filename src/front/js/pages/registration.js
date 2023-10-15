@@ -8,12 +8,14 @@ export const Registration = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userName, name, email);
     actions.signUp(userName, name, email, password);
     <Link to='/login' />
   };
+  
   return (
     <form className="text-center" onSubmit={handleSubmit} action="/login">
       <div className="logo-wrapper mt-5 mb-2">

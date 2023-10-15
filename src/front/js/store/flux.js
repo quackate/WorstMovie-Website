@@ -3,8 +3,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			message: null,
 			horror_movies: [],
-			drama_movies: [],
+			romance_movies: [],
 			action_movies: [],
+			adventure_movies: [],
+			animation_movies: [],
+			comedy_movies: [],
+			crime_movies: [],
+			documentary_movies: [],
+			drama_movies: [],
+			family_movies: [],
+			fantasy_movies: [],
+			history_movies: [],
+			music_movies: [],
+			mystery_movies: [],
+			sciencefiction_movies: [],
+			thriller_movies: [],
 			watchlist: [],
 			token: null
 		},
@@ -20,12 +33,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
-			getDramaMovies: () => {
+			getRomanceMovies: () => {
 				const store = getStore();
 				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=10749&vote_average.gte=2&vote_count.gte=475`).then(resp => resp.json())
 					.then(data => {
 						console.log(data)
-						setStore({ drama_movies: data.results })
+						setStore({ romance_movies: data.results })
 					})
 					.catch(error => {
 						console.log(error);
@@ -37,6 +50,149 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log(data)
 						setStore({ action_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getAdventureMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5&sort_by=vote_average.asc&with_genres=12&vote_average.gte=2&vote_count.gte=800`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ adventure_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getAnimationMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=16&vote_average.gte=2&vote_count.gte=100`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ animation_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getComedyMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5&sort_by=vote_average.asc&with_genres=35&vote_average.gte=2&vote_count.gte=800`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ comedy_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getCrimeMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=80&vote_average.gte=2&vote_count.gte=500`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ crime_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getDocumentaryMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=99&vote_average.gte=2&vote_count.gte=45`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ documentary_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getDramaMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=18&vote_average.gte=2&vote_count.gte=500`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ drama_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getFamilyMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=10751&vote_average.gte=2&vote_count.gte=500`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ family_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getFantasyMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=14&vote_average.gte=2&vote_count.gte=700`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ fantasy_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getHistoryMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=36&vote_average.gte=2&vote_count.gte=30`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ history_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getMusicMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=10402&vote_average.gte=2&vote_count.gte=35`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ music_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getMysteryMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=9648&vote_average.gte=2&vote_count.gte=400`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ mystery_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getScienceFictionMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=878&vote_average.gte=2&vote_count.gte=800`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ sciencefiction_movies: data.results })
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			getThrillerMovies: () => {
+				const store = getStore();
+				fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.MOVIEDB_API_KEY}&vote_average.lte=5.2&sort_by=vote_average.asc&with_genres=53&vote_average.gte=2&vote_count.gte=800`).then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						setStore({ thriller_movies: data.results })
 					})
 					.catch(error => {
 						console.log(error);
@@ -159,7 +315,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			rateMovie: async (movie, rating) => {
 				try {
 					console.log(movie, rating)
-					const response = await fetch(`${process.env.BACKEND_URL}/api/rate_movie`, {
+					const response = await fetch(`${process.env.BACKEND_URL}api/rate_movie`, {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',

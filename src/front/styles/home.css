@@ -60,7 +60,7 @@ body {
 
 .purple-title {
     color: rgb(133, 81, 210);
-    text-shadow: 0 0 40px rgb(210, 194, 233)
+    text-shadow: 0 0 40px rgb(210, 194, 233);
 }
 
 .light-yellow {
@@ -168,7 +168,7 @@ body {
     font-family: 'Bungee';
 }
 
-.fa-bookmark {
+.watchlist-bookmark {
     color: rgb(213, 213, 213);
     text-shadow: 0 0 20px rgba(235, 232, 232, 0.551);
 }
