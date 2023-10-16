@@ -40,6 +40,24 @@
     height: 120px;
 }
 
+.reg-logo:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.reg-logo:active {
+    -webkit-transform: scale(1.13);
+    -moz-transform: scale(1.13);
+    -o-transform: scale(1.13);
+    -ms-transform: scale(1.13);
+    transform: scale(1.13);
+    cursor: pointer;
+}
+
 .text-light-reg {
     color: rgb(210, 210, 210);
     text-shadow: 0px 3px 25px rgba(251, 255, 218, 0.782);

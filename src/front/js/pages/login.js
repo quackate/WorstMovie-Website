@@ -8,18 +8,20 @@ export const Login = () => {
   const [password, setPassword] = useState();
   const { store, actions } = useContext(Context);
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(actions.logIn(email, password));
-    actions.logIn(email, password) ? nav("/") : "";
+    actions.logIn(email, password, alert) ? nav("/") : "";
   };
 
   return (
     <form className="text-center my-5" onSubmit={handleSubmit}>
       <div className="login-logo-wrapper mt-5 mb-2">
-        <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="login-logo" />
+        <Link to='/'>
+          <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="login-logo" />
+        </Link>
       </div>
       <div className="login-wrapper">
         <h1 className="text-light mt-4"><span className="purple-login-title">Sign</span> in<span className="yellow-login-title">!</span></h1>

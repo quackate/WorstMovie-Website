@@ -9,17 +9,20 @@ export const Registration = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const nav = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userName, name, email);
-    actions.signUp(userName, name, email, password);
-    <Link to='/login' />
+    actions.signUp(userName, name, email, password, alert);
   };
 
   return (
     <form className="text-center" onSubmit={handleSubmit} action="/login">
       <div className="logo-wrapper mt-5 mb-2">
-        <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reg-logo" />
+        <Link to='/'>
+          <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reg-logo" />
+        </Link>
       </div>
       <div className="form-wrapper mb-5">
         <h2 className="text-light-reg mt-4"><span className="purple-reg-title">Create</span> Account<span className="yellow-reg-title">!</span></h2>
@@ -45,7 +48,7 @@ export const Registration = () => {
               <label htmlFor="password" className="form-label form-texts">Password</label>
               <input type="password" className="form-control reg-inputs"
                 placeholder="Type your password"
-                id="password" onChange={(e) => setPassword(e.target.value)}/>
+                id="password" onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button type="submit" className="btn btn-light reg-button mt-5">Create your account</button>
           </div>

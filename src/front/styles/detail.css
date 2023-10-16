@@ -145,6 +145,9 @@
     width: 1100px;
     text-align: center;
     padding: 20px;
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(26, 26, 26, 0.882);
 }
 
 .comment-item {

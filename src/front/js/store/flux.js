@@ -354,7 +354,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(err => console.log(err));
 			},
-			signUp: (username, name, email, password) => {
+			signUp: (username, name, email, password, alert) => {
 				var options = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -367,12 +367,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log(data)
+						alert("Registration successful!")
+						return true
 					})
 					.catch(error => {
 						console.log(error)
+						alert("Something went wrong!")
+						return false
 					})
 			},
-			logIn: async (email, password) => {
+			logIn: async (email, password, alert) => {
 				var options = {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -382,13 +386,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const resp = await fetch(process.env.BACKEND_URL + 'api/login', options)
 					const data = await resp.json()
-					if (data && data.token) localStorage.setItem("token", data.token)
-					//console.log(data)
+					if (data && data.token) {
+						localStorage.setItem("token", data.token)
+						alert("Login successful!")
+					}
 					return true
 				}
 
 				catch (error) {
 					console.log(error)
+					alert("Wrong email or password")
 					return false
 				}
 			},
