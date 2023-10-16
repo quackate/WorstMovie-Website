@@ -1,15 +1,76 @@
-.superFormWrappa{
-    margin-bottom: 170px;
-    margin-top: 120px;
-    margin-left: 150px;
+.superFormWrapreset{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 120px;
+    margin-right: 120px;
+}
+ 
+.formWrapper{
+    border-radius: 6%;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
- .formWrappa{
-     background-color: hsl(125, 51%, 17%);
-     border-radius: 6%;
- }
- 
+.reset-logo {
+    height: 120px; 
+}
 
- /*.form-control{
-     box-shadow: 1px 4px 15px rgb(223, 233, 138);
- }*/
+.reset-wrapper {
+    border: solid;
+    margin-top: 20px;
+    padding-top: 30px;
+    border-radius: 20px;
+    width: 720px;
+    margin: auto;
+}
+
+
+.reset-text-light {
+    color: rgb(210, 210, 210);
+    text-shadow: 0px 3px 25px rgba(251, 255, 218, 0.782);
+    font-family: 'Press Start 2P';
+    font-weight: bold;
+    font-size: 27px;
+}
+
+.purple-reset-title {
+    color: rgb(133, 81, 210);
+    text-shadow: 0 0 40px rgb(210, 194, 233);
+}
+
+.yellow-reset-title {
+    color: rgb(255, 245, 169);
+    text-shadow: 0 0 20px rgba(255, 246, 182, 0.871);
+}
+
+.reset-input-texts {
+    color: rgb(205, 205, 205);
+    text-shadow: 2px 0px 15px rgba(251, 255, 218, 0.782);
+    font-family: 'Bungee';
+}
+
+.reset-inputs {
+    color: lightgrey;
+    background-color: rgb(30, 30, 30);
+    border-radius: 20px;
+    box-shadow: 1px 4px 15px rgb(71, 41, 107);
+    border-color: grey;
+}
+
+.reset-button {
+    font-family: 'Bungee';
+    background-color: rgb(255, 245, 169);
+    box-shadow: 2px 2px 12px rgba(255, 246, 182, 0.871);
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    .reset-wrapper {
+        width: 600px;
+        margin: auto;
+    }
+    .superFormWrappareset{
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+}

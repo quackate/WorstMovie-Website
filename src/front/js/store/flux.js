@@ -400,22 +400,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				return localStorage.removeItem("token");
 			},
-			resset: (email, password) => {
+			sendForgotPasswordEmail: (email, alert) => {
 				var options = {
-					method: "PUT",
+					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ email: email, password: password })
+					body: JSON.stringify({ email: email })
 				}
-				fetch(process.env.BACKEND_URL + 'api/resset', options)
+				fetch(process.env.BACKEND_URL + '/api/sendemail', options)
+					.then(response => {
+						if (response.ok) return response.json()
+						else throw Error('Something went wrong with send email')
+					})
+					.then(data => {
+						console.log(data)
+						if (data && data.msg == "success") alert("Check your inbox! You will recieve further instructions for resetting your password. Be sure to also check your spam folder!")
+					})
+					.catch(error => {
+						console.log(error)
+						alert("ERROR: Something went wrong!");
+					})
+			},
+			setNewPassword: (token, password, alert) => {
+				var options = {
+					method: "POST",
+					headers: { 
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${token}`
+				},
+					body: JSON.stringify({ password: password })
+				}
+				fetch(process.env.BACKEND_URL + 'api/resetpassword', options)
 					.then(response => {
 						if (response.ok) return response.json()
 						else throw Error('Something went wrong')
 					})
 					.then(data => {
 						console.log(data)
+						if (data && data.msg == "success") alert("Password changed successfully!")
 					})
 					.catch(error => {
 						console.log(error)
+						alert("ERROR: Something went wrong!");
 					})
 			}
 		}

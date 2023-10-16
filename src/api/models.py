@@ -54,6 +54,7 @@ class Movies(db.Model):
     image = db.Column(db.String(500), nullable=False)
     watchlist = db.relationship('Watchlist', backref='movies', lazy=True)
     movie_rating = db.relationship('Movie_Rating', backref='movies', lazy=True)
+    comments = db.relationship('Comments', backref='movies', lazy=True)
 
     def __repr__(self):
         return f'<Movies {self.title}>'
@@ -109,8 +110,8 @@ class Comments(db.Model):
     __tablename__='comments'
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
     content = db.Column(db.String(120), nullable=False)
-    date = db.Column(db.String(120), nullable=False)
     like_total = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
@@ -120,8 +121,8 @@ class Comments(db.Model):
         return {
             "id": self.id,
             "author_id": self.author_id,
+            "movie_id": self.movie_id,
             "content": self.content,
-            "date": self.date,
             "like_total": self.like_total
         }
 

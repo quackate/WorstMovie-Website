@@ -7,6 +7,10 @@ import { GenreCard } from "../component/genre_card";
 
 export const Animation_Genre = () => {
 	const { store, actions } = useContext(Context);
+
+	/*useEffect(() => {
+        actions.getToken()
+    }, [])*/
 	
 	return (
 		<div className="genrepage-wrapper">

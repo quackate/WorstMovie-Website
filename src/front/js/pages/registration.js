@@ -15,7 +15,7 @@ export const Registration = () => {
     actions.signUp(userName, name, email, password);
     <Link to='/login' />
   };
-  
+
   return (
     <form className="text-center" onSubmit={handleSubmit} action="/login">
       <div className="logo-wrapper mt-5 mb-2">
@@ -27,7 +27,7 @@ export const Registration = () => {
           <div className="formWrappa2 mb-3">
             <div className="mb-3">
               <label htmlFor="username" className="form-label form-texts">Username</label>
-              <input type="text" className="form-control reg-inputs" placeholder="Type your username" id="username" onChange={(e) => setUserName(e.target.value)}/>
+              <input type="text" className="form-control reg-inputs" placeholder="Type your username" id="username" onChange={(e) => setUserName(e.target.value)} />
             </div>
             <div className="mb-3">
               <label htmlFor="name" className="form-label form-texts">Name</label>
@@ -37,15 +37,15 @@ export const Registration = () => {
             <div className="mb-3">
               <label htmlFor="email" className="form-label form-texts">Email address</label>
               <input type="email" className="form-control reg-inputs"
-              placeholder="Type your email" id="email"
-              aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
+                placeholder="Type your email" id="email"
+                aria-describedby="emailHelp" onChange={(e) => setEmail(e.target.value)} />
               <div id="emailHelp" className="form-text mt-2">We'll never share your email with anyone else.</div>
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label form-texts">Password</label>
               <input type="password" className="form-control reg-inputs"
                 placeholder="Type your password"
-                id="password" onChange={(e) => setPassword(e.target.value)} />
+                id="password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button type="submit" className="btn btn-light reg-button mt-5">Create your account</button>
           </div>

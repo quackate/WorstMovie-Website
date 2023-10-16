@@ -6,7 +6,7 @@ from api.models import db, User, Login, Movies, Watchlist, Movie_Rating, Comment
 from api.utils import generate_sitemap, APIException
 from flask_cors import cross_origin, CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from statistics import fmean
+#from flask_mail import Mail, Message
 
 api = Blueprint('api', __name__)
 CORS(api)
@@ -56,17 +56,20 @@ def create_token():
     return jsonify({"token": access_token, "user_id": user.id})
 
 
-@api.route('/resset', methods=['PUT'])
-def resset():
-    email = request.json.get("email", None)
+@api.route('/resetpassword', methods=['POST'])
+@jwt_required()
+def reset_password():
+    email = get_jwt_identity()
     password = request.json.get("password", None)
-    existing_user_email = User.query.filter_by(email=email).first()
-    if existing_user_email is None:
-        return jsonify({"msg": "User don´t exist"}), 400
-    existing_user_email.password = password
 
+    user = User.query.filter_by(email=email).first()
+    if user is None:
+        return jsonify({"msg": "User with this email doesn't exist."}), 401
+
+    user.password = password
     db.session.commit()
-    return jsonify({"msg": "Allrrrright!! User password resseted succesfully"}), 200
+
+    return jsonify({"msg": "success"}), 200
 
 
 @api.route('/rate_movie', methods=['POST'])
@@ -120,6 +123,7 @@ def rate_movie():
     except Exception as e:
         print(e)
         return jsonify({'message': f'Error submitting rating: {str(e)}'}), 500
+    
     
 @api.route('/top_ten', methods=['GET'])
 def movie_avg():
@@ -214,3 +218,5 @@ def deletefrom_watchlist(movie_id):
         return jsonify(watchlist_items), 200
     
     return "Invalid Method", 404
+
+

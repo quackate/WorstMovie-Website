@@ -1,10 +1,10 @@
-.superFormWrappa2{
+.superFormWrappa2 {
     text-align: -webkit-center;
     margin-top: 35px;
     margin-bottom: 50px;
 }
 
-.formWrappa2{
+.formWrappa2 {
     padding-top: 10px;
     padding-bottom: 10px;
     margin-left: 120px;
@@ -37,7 +37,7 @@
 }
 
 .reg-logo {
-    height: 120px; 
+    height: 120px;
 }
 
 .text-light-reg {
@@ -81,7 +81,8 @@
         width: 600px;
         margin: auto;
     }
-    .formWrappa2{
+
+    .formWrappa2 {
         margin-left: 80px;
         margin-right: 80px;
     }

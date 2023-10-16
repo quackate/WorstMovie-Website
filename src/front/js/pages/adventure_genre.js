@@ -8,6 +8,10 @@ import { GenreCard } from "../component/genre_card";
 export const Adventure_Genre = () => {
 	const { store, actions } = useContext(Context);
 	
+	/*useEffect(() => {
+        actions.getToken()
+    }, [])*/
+
 	return (
 		<div className="genrepage-wrapper">
             <h1 className="genrepage-title mb-5 text-center"><span className="genrepage-purple">Adventure</span> Movies <i className="fas fa-film film-icon"></i></h1>

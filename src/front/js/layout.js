@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Detail } from "./pages/detail";
 import{Login} from "./pages/login";
 import { Resset } from "./pages/resset";
+import { Set_NewPassword } from "./pages/new_password";
 import { Trailer } from "./pages/trailer-single";
 
 import { Horror_Genre } from "./pages/horror_genre";
@@ -66,6 +67,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Registration />} path="/registration" />
                         <Route element={<Resset/>} path="/resset" />
+                        <Route element={<Set_NewPassword/>} path="/set_newpassword" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

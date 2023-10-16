@@ -58,5 +58,3 @@ export const Login = () => {
 
   );
 };
-
-//${store.token ? "btn-success": "btn-danger" }

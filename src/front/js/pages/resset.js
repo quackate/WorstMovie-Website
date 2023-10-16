@@ -5,32 +5,33 @@ import { Context } from "../store/appContext";
 
 export const Resset = () => {
     const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
     const { store, actions } = useContext(Context);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
-        actions.resset(email, password);
+        actions.sendForgotPasswordEmail(email, alert);
     };
+    
     return (
-        <form className="text-center" onSubmit={handleSubmit}>
-            <div className="superFormWrappa">
-                <div className="formWrappa pt-4">
-                    <p className="text-danger">
-                        -Suspense music-  Oh Lord!...Have you...
-                        forgotten your... password?!!!!!-Tension, pain..
-                        .-Or... do you... need to... reset it?
-                    </p>
-                    <input type="email" className="form-control my-5"
-                        placeholder="Type here your email adress to resset your password"
-                        id="exampleInputEmail1" aria-describedby="emailHelp"
-                        onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" className="form-control mb-5"
-                        placeholder="Type here your new password"
-                        id="exampleInputEmail1" aria-describedby="emailHelp"
-                        onChange={(e) => setPassword(e.target.value)} />
-                    <button type="submit" className="btn btn-primary mb-4">Resset</button>
+        <form className="text-center my-5" onSubmit={handleSubmit}>
+            <div className="reset-logo-wrapper mt-5 mb-2">
+                <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reset-logo" />
+            </div>
+            <div className="reset-wrapper">
+                <h1 className="reset-text-light mt-4"><span className="purple-reset-title">Reset</span> Password<span className="yellow-reset-title">!</span></h1>
+                <p className="text-white mt-3">Enter the email address associated with your account, then click Continue.</p>
+                <div className="superFormWrapreset p-0">
+                    <div className="formWrapper">
+                        <div className="mb-3">
+                            <label for="exampleInputEmail1" className="form-label reset-input-texts">Email</label>
+                            <input type="email" className="form-control reset-inputs"
+                                placeholder="Type your email adress here to reset your password" id="exampleInputEmail1" onChange={(e) => setEmail(e.target.value)}/>
+                        </div>
+                        <div className="text-center justify-content-center d-flex mt-5">
+                            <button type="submit" className="btn btn-light reset-button me-2">Continue</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

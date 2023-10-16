@@ -32,7 +32,7 @@ export const GenreCard = (props) => {
                                 <p>{props.date} &nbsp;&nbsp;| <i className="yellow fas fa-star ms-2"></i> &nbsp;{props.rating}</p>
                             </div>
                         </div>
-                        <h2 onClick={() => {store.token ? actions.addToWatchlist(props) : alert("Please, sign in or register first! :)")}}><i className='genrecard-bookmark far fa-bookmark'/*{`genrecard-bookmark ${watchlist.includes(props) ? 'fas fa-bookmark': 'far fa-bookmark'}`}*/></i></h2>
+                        <h2 onClick={() => {store.token ? actions.addToWatchlist(props) : alert("Please, sign in or register first! :)")}}><i className=/*'genrecard-bookmark far fa-bookmark'*/{`genrecard-bookmark ${store.watchlist.some(movie => movie.id === props.id) ? 'fas fa-bookmark': 'far fa-bookmark'}`}></i></h2>
                     </div>
                     <p className="genrecard-description">{props.description}</p>
                 </div>
