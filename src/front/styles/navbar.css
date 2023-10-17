@@ -59,17 +59,38 @@ nav {
 
 .search-input {
     color: rgb(230, 230, 230);
-    background-color: rgb(56, 52, 52);
-    border-radius: 20px;
-    border-color: grey;
+    background-color: rgb(44, 44, 44);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: rgb(68, 68, 68);
 }
 
-.btn-search {
-    border-radius: 20px;
+.search-input:focus{
+    outline: none;
+    background-color: rgb(44, 44, 44);
+    caret-color: white;
+    color: white;
 }
 
-.btn-search i {
-    text-shadow: 0 0 10px rgba(254, 254, 254, 0.645);
+datalist {
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
+
+.icon-search {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(71, 71, 71);
+    padding: 6px;
+    padding-right: 20px;
+    padding-left: 17px;
+}
+
+.icon-search i {
+    text-shadow: 0 0 10px rgba(215, 215, 215, 0.451);
+    color: rgb(198, 198, 198);
 }
 
 .scrollbar::-webkit-scrollbar {

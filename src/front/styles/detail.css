@@ -148,6 +148,7 @@
     border: solid;
     border-width: 1px;
     border-color: rgba(26, 26, 26, 0.882);
+    box-shadow: 5px 5px 25px rgba(62, 62, 62, 0.722);
 }
 
 .comment-item {
