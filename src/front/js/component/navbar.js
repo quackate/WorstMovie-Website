@@ -115,8 +115,8 @@ export const Navbar = () => {
 						</span>
 					</Link>
 					<div className="dropdown more-genres me-auto ms-2">
-						<button className="btn btn-light dropdown-toggle genres-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Movies by genre</button>
-						<ul className="dropdown-menu scrollbar">
+						<button className="btn btn-light dropdown-toggle genres-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Movies by genre&nbsp;&nbsp;</button>
+						<ul className="dropdown-genres dropdown-menu dropdown-menu-dark scrollbar">
 							<Link to='/genre/action'>
 								<li className="dropdown-item">Action</li>
 							</Link>

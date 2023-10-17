@@ -12,10 +12,17 @@ export const Detail = () => {
     const [videoKey, setVideoKey] = useState();
     const [userRating, setUserRating] = useState()
 
-    /*const navigate = useNavigate();*/
-    /*useEffect(() => {
-        actions.getToken()
-    }, [])*/
+    const [newComment, setNewComment] = useState("");
+    const [comments, setComments] = useState([]);
+
+    const addComment = () => {
+        setComments(comments.concat(newComment))
+        setNewComment("");
+    }
+
+    const deleteComment = (i) => {
+        setComments(comments.filter((l, currentIndex) => i != currentIndex));
+    }
 
     /*const handleAddToWatchlist = (movie) => {
      actions.addToWatchlist(movie);
@@ -98,41 +105,46 @@ export const Detail = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Beginning of comment section */}
+
                 <div className="comments-section">
                     <div className="comments-main-wrapper">
                         <ul className="comments-list-wrapper">
-                            <p className="text-white text-start ms-5 mt-3">10 Comments</p>
+                            <p className="text-white text-start ms-5 mt-3">{comments.length == 1 ? `${comments.length} Comment` : `${comments.length} Comments`}</p>
                             <li className="comment-item px-5 d-flex mb-5">
-                                <input type="text" id="add-comment" className="comment-input" placeholder="Add a comment..." />
-                                <button type="button" className="btn btn-light ms-3 comment-btn">Comment</button>
+                                <input type="text" id="add-comment" className="comment-input" placeholder="Add a comment..." onChange={e => setNewComment(e.target.value)} value={newComment} />
+                                <button type="button" className="btn btn-light ms-3 comment-btn" onClick={addComment}>Comment</button>
                             </li>
-                            <li className="comment-item comment-card px-5 text-white mb-3">
-                                <p><strong>@username</strong></p>
-                                <p>Hello, I'm an example comment</p>
-                                <div className="likes-and-dislikes d-flex">
-                                    <div className="likes d-flex me-4">
-                                        <i className="far fa-thumbs-up me-2"></i>
-                                        <p>2</p>
+                            {comments.map((l, i) => (
+                                <li className="comment-item comment-card px-5 text-white mb-3">
+                                    <div className="top-of-comment d-flex">
+                                        <p><strong>@username</strong></p>
+                                        <div className="dropdown">
+                                            <button className="menu-btn btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i className="fas fa-ellipsis-v pt-2"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-comments dropdown-menu-dark dropdown-menu-end">
+                                                <li className="dropdown-item"><i className="fas fa-pencil-alt me-3"></i>Edit</li>
+                                                <li className="dropdown-item" onClick={() => { deleteComment(i) }}><i className="far fa-trash-alt me-3"></i>Delete</li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className="dislikes d-flex">
-                                        <i className="far fa-thumbs-down me-2"></i>
-                                        <p>1</p>
+                                    <p>{l}</p>
+                                    <div className="likes-and-dislikes d-flex">
+                                        <div className="likes d-flex me-4">
+                                            <i className="far fa-thumbs-up me-2"></i>
+                                            <p>2</p>
+                                        </div>
+                                        <div className="dislikes d-flex">
+                                            <i className="far fa-thumbs-down me-2"></i>
+                                            <p>1</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li className="comment-item comment-card px-5 text-white mb-3">
-                                <p><strong>@username2</strong></p>
-                                <p>Example comment number 2 here!</p>
-                                <div className="likes-and-dislikes d-flex">
-                                    <div className="likes d-flex me-4">
-                                        <i className="far fa-thumbs-up me-2"></i>
-                                        <p>3</p>
-                                    </div>
-                                    <div className="dislikes d-flex">
-                                        <i className="far fa-thumbs-down me-2"></i>
-                                        <p>2</p>
-                                    </div>
-                                </div>
+                                </li>
+                            ))}
+                            <li className="comment-item comment-card px-5 text-white mb-4 text-center">
+                                {comments.length == 0 ? "No comments to display. Add a comment!" : ""}
                             </li>
                         </ul>
                     </div>

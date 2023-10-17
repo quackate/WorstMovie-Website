@@ -45,7 +45,7 @@ nav {
     box-shadow: 2px 2px 11px rgba(255, 246, 182, 0.675);
 }
 
-.dropdown-menu {
+.dropdown-genres {
     max-height: 150px;
     width: 200px;
     overflow-y: scroll;

@@ -177,3 +177,20 @@
 .comment-card {
     text-align: left;
 }
+
+.top-of-comment {
+    justify-content: space-between;
+}
+
+.dropdown-comments {
+    max-height: 150px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: rgb(56, 52, 52);
+}
+
+.menu-btn {
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
