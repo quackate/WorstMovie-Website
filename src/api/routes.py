@@ -219,4 +219,22 @@ def deletefrom_watchlist(movie_id):
     
     return "Invalid Method", 404
 
+@api.route('/comments', methods=['POST'])
+@jwt_required()
+def add_comment():
+    if request.method == 'POST':
+        comment = Comments()
+        comment.author_id = get_jwt_identity()
+        comment.movie_id = request.get_json()['movie_id']
+        comment.content = request.get_json()['content']
+        comment.like_total = request.get_json()['like_total']
 
+        db.session.add(comment)
+        db.session.commit()
+
+        # Show the updated version of the comments
+        comments = []
+        db_result = Comments.query.all()
+        for item in db_result:
+            comments.append(item.serialize())
+        return jsonify(comments), 200

@@ -93,6 +93,33 @@ datalist {
     color: rgb(198, 198, 198);
 }
 
+.search-results-wrapper {
+    position: absolute;
+    z-index: 10;
+}
+
+.search-bar-list {
+    list-style-type: none;
+    color: white;
+    border-radius: 20px;
+    max-height: 180px;
+    width: 300px;
+    overflow-y: scroll;
+    background-color: rgb(56, 52, 52);
+}
+
+.search-item-li {
+    padding: 2px 25px 2px;
+}
+
+.search-item-li:hover {
+    background-color: rgb(81, 81, 81);
+}
+
+.search-item-li:active {
+    background-color: rgb(138, 138, 138);
+}
+
 .scrollbar::-webkit-scrollbar {
     width: 11px;
     height: 11px;

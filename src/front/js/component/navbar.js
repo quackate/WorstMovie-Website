@@ -10,12 +10,14 @@ export const Navbar = () => {
 	/***/
 	const [inputText, setInputText] = useState("");
 	const [autocompleteResults, setAutocompleteResults] = useState([]);
+	const [showAutocomplete, setShowAutocomplete] = useState(false);
 
 	let inputHandler = (text) => {
 		setInputText(text)
 
 		if (text.trim() == "") {
 			setAutocompleteResults([])
+			setShowAutocomplete(false);
 		}
 
 		else {
@@ -91,6 +93,7 @@ export const Navbar = () => {
 							result.title.toLowerCase().includes(text.toLowerCase())
 						)]
 					setAutocompleteResults(combinedData)
+					setShowAutocomplete(true);
 				})
 				.catch((error) => {
 					console.log("Looks like there was a problem: \n", error);
@@ -100,8 +103,9 @@ export const Navbar = () => {
 
 	const handleSelectAutocomplete = (item) => {
 		setInputText(item.title);
-		console.log(`details/${item.id}`)
-		nav(`details/${item.id}`);
+		setShowAutocomplete(false);
+		console.log(`detail/${item.id}`)
+		nav(`detail/${item.id}`);
 	};
 	/***/
 
@@ -167,21 +171,28 @@ export const Navbar = () => {
 							</Link>
 						</ul>
 					</div>
-					<form className="form-inline d-flex me-4">
-						<input className="form-control search-input mr-sm-2" type="search" placeholder="Search" aria-label="Search" autoComplete="on" list="searchlist" onChange={(e) => inputHandler(e.target.value)} value={inputText}/>
-						<p className="icon-search my-2 my-sm-0"><i className="fas fa-search"></i></p>
-						<datalist id="searchlist">
-							{autocompleteResults.map((item, index) => (
-								//<Link to={`/details/${item.id}`}>
-									<option key={index} onClick={() => handleSelectAutocomplete(item)}>
-										{item.title}
-									</option>
-								//</Link>
-							))}
-							{/*<option>
+					<form className="">
+						<div className="form-inline me-4 d-flex">
+							<input className="form-control search-input mr-sm-2" type="search" placeholder="Search" aria-label="Search" autoComplete="on" onChange={(e) => inputHandler(e.target.value)} value={inputText} />
+							<p className="icon-search my-2 my-sm-0"><i className="fas fa-search"></i></p>
+						</div>
+						<div className="search-results-wrapper">
+							{showAutocomplete && autocompleteResults.length > 0 && (
+								<ul className="search-bar-list scrollbar p-0">
+									{autocompleteResults.map((item, index) => (
+										//<Link to={`/details/${item.id}`}>
+										<li key={index} className="search-item-li my-2" onClick={() => handleSelectAutocomplete(item)}>
+											{item.title}
+										</li>
+										//</Link>
+									))}
+									{/*<option>
 								{autocompleteResults.length == 0 ? "Oops! Looks like we don't have that movie right now!" : ""}
 							</option>*/}
-						</datalist>
+								</ul>
+							)}
+						</div>
+
 					</form>
 					<div className="ml-auto">
 						<Link to="/login">

@@ -12,6 +12,7 @@ export const Detail = () => {
     const [videoKey, setVideoKey] = useState();
     const [userRating, setUserRating] = useState()
 
+
     const [newComment, setNewComment] = useState("");
     const [comments, setComments] = useState([]);
 
@@ -44,6 +45,7 @@ export const Detail = () => {
         actions.getTrailerForMovie(params.movieId, setVideoKey);
         actions.getMovieById(params.movieId, setMovieInfo);
         actions.getUserRating(params.movieId, setUserRating)
+        actions.getToken()
     }, [params.movieId, setMovieInfo, setVideoKey]);
 
     const imageUrl = `https://image.tmdb.org/t/p/w1280/${movieInfo.poster_path}`;
@@ -144,7 +146,7 @@ export const Detail = () => {
                                 </li>
                             ))}
                             <li className="comment-item comment-card px-5 text-white mb-4 text-center">
-                                {comments.length == 0 ? "No comments to display. Add a comment!" : ""}
+                                {comments.length == 0 ? "No comments yet. Be the first to add a comment!" : ""}
                             </li>
                         </ul>
                     </div>
@@ -153,3 +155,5 @@ export const Detail = () => {
         </div>
     );
 };
+
+export default Detail;
