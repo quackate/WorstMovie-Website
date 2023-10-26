@@ -113,6 +113,7 @@ class Comments(db.Model):
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
     content = db.Column(db.String(120), nullable=False)
     like_total = db.Column(db.Integer, nullable=False)
+    dislike_total = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         return f'<Comments {self.id}>'
@@ -123,7 +124,8 @@ class Comments(db.Model):
             "author_id": self.author_id,
             "movie_id": self.movie_id,
             "content": self.content,
-            "like_total": self.like_total
+            "like_total": self.like_total,
+            "dislike_total": self.dislike_total
         }
 
         

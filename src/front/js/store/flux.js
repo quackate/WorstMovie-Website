@@ -297,7 +297,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error);
 				}
 			},
-			rateMovie: async (movie, rating) => {
+			rateMovie: async (movie, rating, movie_poster) => {z
                 try {
 					console.log(movie,rating)
                     const response = await fetch(`${process.env.BACKEND_URL}api/rate_movie`, {
@@ -306,7 +306,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${getActions().getToken()}` 
                         },
-                        body: JSON.stringify({  movie: { image: `https://image.tmdb.org/t/p/original${movie.img_src}`, ...movie}, rating })
+                        body: JSON.stringify({  movie: { image: `https://image.tmdb.org/t/p/original${movie_poster}`, ...movie}, rating })
                     });
 
                     if (response.ok) {
@@ -433,6 +433,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error)
 						alert("ERROR: Something went wrong!");
 					})
+			},
+			getComments: async (setComments, movie_id) => {
+				let options = {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}
+				try {
+					const resp = await fetch(`${process.env.BACKEND_URL}api/comments/${movie_id}`, options)
+					const data = await resp.json()
+					setComments(data)
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			addComment: (movie, movie_poster, movie_id, content) => {
+				let options = {
+					method: 'POST',
+					body: JSON.stringify({ movie: {image:`https://image.tmdb.org/t/p/original${movie_poster}`, ...movie}, movie_id: movie_id, content: content, like_total: 0, dislike_total: 0 }),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${getActions().getToken()}`
+					}
+				}
+
+				fetch(`${process.env.BACKEND_URL}api/comments`, options)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						const store = getStore();
+						console.log(store.comments)
+						const item_comment = store.comments.concat(data);
+						setStore({ comments: item_comment });
+					})
+					.catch(error => {
+						console.log(error);
+					});
 			}
 		}
 	}

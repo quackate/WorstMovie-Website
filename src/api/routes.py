@@ -6,7 +6,7 @@ from api.models import db, User, Login, Movies, Watchlist, Movie_Rating, Comment
 from api.utils import generate_sitemap, APIException
 from flask_cors import cross_origin, CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-#from flask_mail import Mail, Message
+# from flask_mail import Mail, Message
 
 api = Blueprint('api', __name__)
 CORS(api)
@@ -123,8 +123,8 @@ def rate_movie():
     except Exception as e:
         print(e)
         return jsonify({'message': f'Error submitting rating: {str(e)}'}), 500
-    
-    
+
+
 @api.route('/top_ten', methods=['GET'])
 def movie_avg():
     if request.method == 'GET':
@@ -134,7 +134,7 @@ def movie_avg():
             ratings.append(item.serialize())
 
         return jsonify(ratings), 200
-    
+
     return "Invalid Method", 404
 
 
@@ -183,7 +183,8 @@ def addto_watchlist():
 @jwt_required()
 def getfrom_watchlist():
     if request.method == 'GET':
-        watchlist = Watchlist.query.filter_by(author_id=get_jwt_identity()).all()
+        watchlist = Watchlist.query.filter_by(
+            author_id=get_jwt_identity()).all()
         movies = []
         print(watchlist)
 
@@ -205,7 +206,8 @@ def getfrom_watchlist():
 @jwt_required()
 def deletefrom_watchlist(movie_id):
     if request.method == 'DELETE':
-        watchlist = Watchlist.query.filter_by(movie_id=movie_id, author_id=get_jwt_identity()).first()
+        watchlist = Watchlist.query.filter_by(
+            movie_id=movie_id, author_id=get_jwt_identity()).first()
 
         db.session.delete(watchlist)
         db.session.commit()
@@ -216,18 +218,39 @@ def deletefrom_watchlist(movie_id):
         for item in db_result:
             watchlist_items.append(item.serialize())
         return jsonify(watchlist_items), 200
-    
+
     return "Invalid Method", 404
+
 
 @api.route('/comments', methods=['POST'])
 @jwt_required()
 def add_comment():
     if request.method == 'POST':
+        data = request.json
+        user_id = get_jwt_identity()
+        movie = data.get('movie')
+
+        user = User.query.get(user_id)
+        if not user:
+            return jsonify({'message': 'User not found'}), 404
+
+        movie_info = Movies.query.get(movie["id"])
+        if not movie_info:
+            new_movie = Movies(
+                id=movie["id"],
+                title=movie["title"],
+                rating=movie["vote_average"],
+                image=movie["image"],
+            )
+            db.session.add(new_movie)
+            db.session.commit()
+
         comment = Comments()
         comment.author_id = get_jwt_identity()
         comment.movie_id = request.get_json()['movie_id']
         comment.content = request.get_json()['content']
         comment.like_total = request.get_json()['like_total']
+        comment.dislike_total = request.get_json()['dislike_total']
 
         db.session.add(comment)
         db.session.commit()
@@ -238,3 +261,33 @@ def add_comment():
         for item in db_result:
             comments.append(item.serialize())
         return jsonify(comments), 200
+
+
+@api.route('/comments/<int:movie_id>', methods=['GET'])
+def get_comment(movie_id):
+    if request.method == 'GET':
+        comments = db.session.query(
+            Comments.movie_id,
+            Comments.content,
+            Comments.like_total,
+            Comments.dislike_total,
+            User.username  # Include the username from the Users table
+        ).join(
+            User, User.id == Comments.author_id
+        ).filter(
+            Comments.movie_id == movie_id
+        ).all()
+
+        comment_array = []
+
+        for comment in comments:
+            comment_dict = {
+                'movie_id': comment.movie_id,
+                'content': comment.content,
+                'like_total': comment.like_total,
+                'dislike_total': comment.dislike_total,
+                'author_username': comment.username
+            }
+            comment_array.append(comment_dict)
+
+    return jsonify(comment_array), 200
