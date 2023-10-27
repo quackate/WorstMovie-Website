@@ -1,6 +1,6 @@
 .main-wrapper {
     margin: 30px;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .img-poster {
@@ -9,14 +9,24 @@
     border: solid;
     border-width: 1px;
     border-color: rgb(29, 204, 204);
+    border-radius: 5px;
 }
 
 .img-poster:hover {
     box-shadow: 0 0 22px rgb(188, 249, 252);
+    -webkit-transform: scale(1.04);
+    -moz-transform: scale(1.04);
+    -o-transform: scale(1.04);
+    -ms-transform: scale(1.04);
+    transform: scale(1.04);
+}
+
+.watchlist-item-title {
+    font-size: 14px;
 }
 
 .watchlist-rating {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .item-info {
@@ -35,7 +45,7 @@
 }
 
 .trailer-button {
-    font-size: 14px;
+    font-size: 13px;
     color: white;
     text-decoration: none;
 }

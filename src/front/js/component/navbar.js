@@ -102,7 +102,7 @@ export const Navbar = () => {
 	};
 
 	const handleSelectAutocomplete = (item) => {
-		setInputText(item.title);
+		setInputText("");
 		setShowAutocomplete(false);
 		console.log(`detail/${item.id}`)
 		nav(`detail/${item.id}`);
@@ -121,52 +121,52 @@ export const Navbar = () => {
 					<div className="dropdown more-genres me-auto ms-2">
 						<button className="btn btn-light dropdown-toggle genres-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Movies by genre&nbsp;&nbsp;</button>
 						<ul className="dropdown-genres dropdown-menu dropdown-menu-dark scrollbar">
-							<Link to='/genre/action'>
+							<Link to='/genre/action' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Action</li>
 							</Link>
-							<Link to='/genre/adventure'>
+							<Link to='/genre/adventure' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Adventure</li>
 							</Link>
-							<Link to='/genre/animation'>
+							<Link to='/genre/animation' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Animation</li>
 							</Link>
-							<Link to='/genre/comedy'>
+							<Link to='/genre/comedy' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Comedy</li>
 							</Link>
-							<Link to='/genre/crime'>
+							<Link to='/genre/crime' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Crime</li>
 							</Link>
-							<Link to='/genre/documentary'>
+							<Link to='/genre/documentary' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Documentary</li>
 							</Link>
-							<Link to='/genre/drama'>
+							<Link to='/genre/drama' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Drama</li>
 							</Link>
-							<Link to='/genre/family'>
+							<Link to='/genre/family' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Family</li>
 							</Link>
-							<Link to='/genre/fantasy'>
+							<Link to='/genre/fantasy' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Fantasy</li>
 							</Link>
-							<Link to='/genre/history'>
+							<Link to='/genre/history' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">History</li>
 							</Link>
-							<Link to='/genre/horror'>
+							<Link to='/genre/horror' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Horror</li>
 							</Link>
-							<Link to='/genre/music'>
+							<Link to='/genre/music' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Music</li>
 							</Link>
-							<Link to='/genre/mystery'>
+							<Link to='/genre/mystery' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Mystery</li>
 							</Link>
-							<Link to='/genre/romance'>
+							<Link to='/genre/romance' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Romance</li>
 							</Link>
-							<Link to='/genre/sciencefiction'>
+							<Link to='/genre/sciencefiction' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Science Fiction</li>
 							</Link>
-							<Link to='/genre/thriller'>
+							<Link to='/genre/thriller' style={{ textDecoration: 'none' }}>
 								<li className="dropdown-item">Thriller</li>
 							</Link>
 						</ul>

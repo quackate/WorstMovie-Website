@@ -21,8 +21,8 @@ export const MovieCard = (props) => {
                                 <button type="button" className="info-button btn btn-outline-light">More Info!</button>
                                 </ Link>
                             </div>
-                            <h6 className="lighter" onClick={() => {store.token ? actions.addToWatchlist(props) : alert("Please, sign in or register first! :)")}}><i className="yellow fas fa-plus"></i> Add to watchlist</h6>
-                            <Link to={`/trailer/${props.id}`}>
+                            <h6 className="lighter watchl-btn" onClick={() => {store.token ? actions.addToWatchlist(props) : alert("Please, sign in or register first! :)")}}><i className="yellow fas fa-plus"></i> Add to watchlist</h6>
+                            <Link to={`/trailer/${props.id}`} style={{ textDecoration: 'none' }}>
                                <h6 className="trailer-btn lighter"><i className="red fas fa-play-circle"></i> Watch Trailer</h6> 
                             </Link>
                             
