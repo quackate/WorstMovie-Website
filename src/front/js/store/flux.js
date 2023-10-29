@@ -297,9 +297,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error);
 				}
 			},
-			rateMovie: async (movie, rating, movie_poster) => {z
+			rateMovie: async (movie, rating, movie_poster) => {
                 try {
-					console.log(movie,rating)
+					console.log("---------------------",movie,rating)
                     const response = await fetch(`${process.env.BACKEND_URL}api/rate_movie`, {
                         method: 'POST',
                         headers: {
@@ -373,6 +373,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 					if (data && data.token) {
 						localStorage.setItem("token", data.token)
+						setStore({"user_id": data.user_id})
 						alert("Login successful!")
 					}
 					return true
@@ -445,6 +446,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch(`${process.env.BACKEND_URL}api/comments/${movie_id}`, options)
 					const data = await resp.json()
 					setComments(data)
+					console.log("------------------", data)
 				} catch (error) {
 					console.log(error)
 				}
@@ -467,6 +469,158 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(store.comments)
 						const item_comment = store.comments.concat(data);
 						setStore({ comments: item_comment });
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			deleteComment: (comment_id) => {
+				let options = {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${getActions().getToken()}`
+					}
+				}
+			
+				fetch(`${process.env.BACKEND_URL}api/comments/${comment_id}`, options)
+					.then(resp => {
+						if (!resp.ok) {
+							throw new Error(`HTTP error! status: ${resp.status}`);
+						}
+						return resp.json();
+					})
+					.then(data => {
+						console.log('Comment deleted successfully');
+						const store = getStore();
+						const updatedComments = store.comments.filter(comment => comment.id !== comment_id);
+						setStore({ comments: updatedComments });
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+			},
+			likeComment: (like, comment_id) => {
+				let options = {
+					method: 'POST',
+					body: JSON.stringify({ like_total: like }),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${getActions().getToken()}`
+					}
+				}
+			
+				fetch(`${process.env.BACKEND_URL}api/comments/like_dislike/${comment_id}`, options)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						//setLiked(true)
+						const store = getStore();
+						console.log(store.comments)
+						
+						// Update the comment in the store with the new data
+						const updatedComments = store.comments.map(comment => {
+							if (comment.id === comment_id) {
+								return data;
+							}
+							return comment;
+						});
+			
+						setStore({ comments: updatedComments });
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			dislikeComment: (dislike, comment_id) => {
+				let options = {
+					method: 'POST',
+					body: JSON.stringify({ dislike_total: dislike }),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${getActions().getToken()}`
+					}
+				}
+			
+				fetch(`${process.env.BACKEND_URL}api/comments/like_dislike/${comment_id}`, options)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						const store = getStore();
+						console.log(store.comments)
+						
+						// Update the comment in the store with the new data
+						const updatedComments = store.comments.map(comment => {
+							if (comment.id === comment_id) {
+								return data;
+							}
+							return comment;
+						});
+			
+						setStore({ comments: updatedComments });
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			removeLike: (like, comment_id) => {
+				let options = {
+					method: 'PUT',
+					body: JSON.stringify({ like_total: like }),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${getActions().getToken()}`
+					}
+				}
+			
+				fetch(`${process.env.BACKEND_URL}api/comments/rmv_like_dislike/${comment_id}`, options)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						//setLiked(false)
+						const store = getStore();
+						console.log(store.comments)
+						
+						// Update the comment in the store with the new data
+						const updatedComments = store.comments.map(comment => {
+							if (comment.id === comment_id) {
+								return data;
+							}
+							return comment;
+						});
+			
+						setStore({ comments: updatedComments });
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			},
+			removeDislike: (dislike, comment_id) => {
+				let options = {
+					method: 'PUT',
+					body: JSON.stringify({ dislike_total: dislike }),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${getActions().getToken()}`
+					}
+				}
+			
+				fetch(`${process.env.BACKEND_URL}api/comments/rmv_like_dislike/${comment_id}`, options)
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data)
+						const store = getStore();
+						console.log(store.comments)
+						
+						// Update the comment in the store with the new data
+						const updatedComments = store.comments.map(comment => {
+							if (comment.id === comment_id) {
+								return data;
+							}
+							return comment;
+						});
+			
+						setStore({ comments: updatedComments });
 					})
 					.catch(error => {
 						console.log(error);

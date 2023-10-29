@@ -1,10 +1,72 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/detail.css";
 import { Context } from "../store/appContext";
 
 export const CommentCard = (props) => {
     const { store, actions } = useContext(Context);
+
+    const [liked, setLiked] = useState(false);
+    const [disliked, setDisliked] = useState(false);
+    const [like_thumb_weight, setLike_thumb_weight] = useState('far');
+    const [dislike_thumb_weight, setDislike_thumb_weight] = useState('far');
+
+
+    const like = () => {
+        if (liked === false) {
+            actions.likeComment(props.likes, props.comment_id)
+            setLiked(true)
+            console.log(liked)
+            setLike_thumb_weight('fas')
+            //window.location.reload();
+        }
+        else {
+            actions.removeLike(props.likes, props.comment_id)
+            setLiked(false)
+            console.log(liked)
+            setLike_thumb_weight('far')
+            //window.location.reload();
+        }
+    }
+
+    const handleLike = () => {
+        if (store.token) {
+            like()
+        }
+        else (alert("Please, sign in or register first! :)"))
+    }
+
+    const dislike = () => {
+        if (disliked === false) {
+            actions.dislikeComment(props.dislikes, props.comment_id)
+            setDisliked(true)
+            console.log(disliked)
+            setDislike_thumb_weight('fas')
+            //window.location.reload();
+        }
+        else {
+            actions.removeDislike(props.dislikes, props.comment_id)
+            setDisliked(false)
+            console.log(disliked)
+            setDislike_thumb_weight('far')
+            //window.location.reload();
+        }
+    }
+
+    const handleDislike = () => {
+        if (store.token) {
+            dislike()
+        }
+        else (alert("Please, sign in or register first! :)"))
+    }
+
+    const handleDelete = () => {
+        if (store.token) {
+            actions.deleteComment(props.comment_id);
+            //window.location.reload();
+        }
+        else (alert("Please, sign in or register first! :)"))
+    }
 
     return (
         <div className="commentcard-wrapper">
@@ -15,20 +77,25 @@ export const CommentCard = (props) => {
                         <button className="menu-btn btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i className="fas fa-ellipsis-v pt-2"></i>
                         </button>
-                        <ul className="dropdown-menu dropdown-comments dropdown-menu-dark dropdown-menu-end">
-                            <li className="dropdown-item"><i className="fas fa-pencil-alt me-3"></i>Edit</li>
-                            <li className="dropdown-item" onClick={() => { deleteComment(props.index) }}><i className="far fa-trash-alt me-3"></i>Delete</li>
-                        </ul>
+                        {
+                            store.user_id === props.author_id ? (
+                                <ul className="dropdown-menu dropdown-comments dropdown-menu-dark dropdown-menu-end">
+                                    <li className="dropdown-item"><i className="fas fa-pencil-alt me-3"></i>Edit</li>
+                                    <li className="dropdown-item" onClick={handleDelete}><i className="far fa-trash-alt me-3"></i>Delete</li>
+                                </ul>
+                            ) :
+                            ""
+                        }
                     </div>
                 </div>
                 <p>{props.content}</p>
                 <div className="likes-and-dislikes d-flex">
                     <div className="likes d-flex me-4">
-                        <i className="far fa-thumbs-up me-2"></i>
+                        <i className={`like-btn ${like_thumb_weight} fa-thumbs-up me-2`} onClick={handleLike}></i>
                         <p>{props.likes}</p>
                     </div>
                     <div className="dislikes d-flex">
-                        <i className="far fa-thumbs-down me-2"></i>
+                        <i className={`dislike-btn ${dislike_thumb_weight} fa-thumbs-down me-2`} onClick={handleDislike}></i>
                         <p>{props.dislikes}</p>
                     </div>
                 </div>

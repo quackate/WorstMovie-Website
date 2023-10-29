@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Login, Movies, Watchlist, Movie_Rating, Comments
+from api.models import db, User, Login, Movies, Watchlist, Movie_Rating, Comments, Likes
 from api.utils import generate_sitemap, APIException
 from flask_cors import cross_origin, CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
@@ -263,15 +263,35 @@ def add_comment():
         return jsonify(comments), 200
 
 
+@api.route('/comments/<int:comment_id>', methods=['DELETE'])
+@jwt_required()
+def delete_comment(comment_id):
+    if request.method == 'DELETE':
+        comment = Comments.query.get(comment_id)
+        user_id = get_jwt_identity()
+
+        if not comment:
+            return jsonify({'message': 'Comment not found'}), 404
+
+        if comment.author_id != user_id:
+            return jsonify({'message': 'You are not authorized to edit this comment'}), 403
+
+        db.session.delete(comment)
+        db.session.commit()
+
+        return jsonify({'message': 'Comment deleted successfully'}), 200
+    
+
 @api.route('/comments/<int:movie_id>', methods=['GET'])
 def get_comment(movie_id):
     if request.method == 'GET':
         comments = db.session.query(
+            Comments.id,
             Comments.movie_id,
             Comments.content,
             Comments.like_total,
             Comments.dislike_total,
-            User.username  # Include the username from the Users table
+            User.username,  # Include the username from the Users table
         ).join(
             User, User.id == Comments.author_id
         ).filter(
@@ -282,6 +302,7 @@ def get_comment(movie_id):
 
         for comment in comments:
             comment_dict = {
+                'id': comment.id,
                 'movie_id': comment.movie_id,
                 'content': comment.content,
                 'like_total': comment.like_total,
@@ -291,3 +312,93 @@ def get_comment(movie_id):
             comment_array.append(comment_dict)
 
     return jsonify(comment_array), 200
+
+#Something I'm trying
+@api.route('/comments/like_dislike/<int:comment_id>', methods=['POST'])
+@jwt_required()
+def like_comment(comment_id):
+    if request.method == 'POST':
+        data = request.json
+        user_id = get_jwt_identity()
+        comment = Comments.query.get(comment_id)
+
+        if not comment:
+            return jsonify({'message': 'Comment not found'}), 404
+
+        user_liked = Likes.query.filter_by(user_id=user_id, comment_id=comment_id).first()
+        if user_liked:
+            return jsonify({'message': 'You have already liked this comment'}), 400
+
+        like = Likes(user_id=user_id, comment_id=comment_id)
+        db.session.add(like)
+        db.session.commit()
+
+        #comment = Comments.query.get(comment_id)
+        #if not comment:
+            #return jsonify({'message': 'Comment not found'}), 404
+
+        #if comment.author_id != user_id:
+            #return jsonify({'message': 'You are not authorized to edit this #comment'}), 403
+
+        # Update like_total and dislike_total if they are present in the request
+        if 'like_total' in data:
+            comment.like_total = data['like_total'] + 1
+        if 'dislike_total' in data:
+            comment.dislike_total = data['dislike_total'] + 1
+
+        db.session.commit()
+
+        return jsonify({'message': 'Comment liked successfully'}, comment.serialize()), 200
+
+
+@api.route('/comments/rmv_like_dislike/<int:comment_id>', methods=['PUT'])
+@jwt_required()
+def remove_like(comment_id):
+    if request.method == 'PUT':
+        data = request.json
+        user_id = get_jwt_identity()
+        comment = Comments.query.get(comment_id)
+
+        if not comment:
+            return jsonify({'message': 'Comment not found'}), 404
+        
+        user_liked = Likes.query.filter_by(user_id=user_id, comment_id=comment_id).first()
+        if not user_liked:
+            return jsonify({"message": "You haven't liked this comment"}), 400
+
+        db.session.delete(user_liked)
+        db.session.commit()
+
+        #if comment.author_id != user_id:
+            #return jsonify({'message': 'You are not authorized to edit this #comment'}), 403
+
+        # Update like_total and dislike_total if they are present in the request
+        if 'like_total' in data:
+            comment.like_total = data['like_total'] - 1
+        if 'dislike_total' in data:
+            comment.dislike_total = data['dislike_total'] - 1
+
+        db.session.commit()
+
+        return jsonify({'message': 'Comment liked removed successfully'}, comment.serialize()), 200
+
+
+#Trying this to see if it works
+@api.route('/comments/<int:comment_id>/like', methods=['POST'])
+@jwt_required()
+def user_liked(comment_id):
+    user_id = get_jwt_identity()
+
+    comment = Comments.query.get(comment_id)
+    if not comment:
+        return jsonify({'message': 'Comment not found'}), 404
+
+    user_liked = Likes.query.filter_by(user_id=user_id, comment_id=comment_id).first()
+    if user_liked:
+        return jsonify({'message': 'You have already liked this comment'}), 400
+
+    like = Likes(user_id=user_id, comment_id=comment_id)
+    db.session.add(like)
+    db.session.commit()
+
+    return jsonify({'message': 'Comment liked successfully'}), 200

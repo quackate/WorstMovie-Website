@@ -35,9 +35,9 @@ export const Detail = () => {
             (actions.addComment(movieInfo.id, newComment) && setNewComment("")) : alert("Please, sign in or register first! :)")}
     }*/
 
-const deleteComment = (i) => {
-    setComments(comments.filter((l, currentIndex) => i != currentIndex));
-}
+//const deleteComment = (i) => {
+    //setComments(comments.filter((l, currentIndex) => i != currentIndex));
+//}
 
 /*const handleAddToWatchlist = (movie) => {
  actions.addToWatchlist(movie);
@@ -45,13 +45,15 @@ const deleteComment = (i) => {
  };*/
 
 const handleRatingClick = (nextValue) => {
-    {
-        store.token ?
-            (setUserRating(nextValue) &&
+    if (store.token) {
+        setUserRating(nextValue)
                 //localStorage.setItem(`userRating-${params.movieId}`, nextValue.toString());
-                actions.rateMovie(movieInfo, nextValue, movieInfo.poster_path))
-            : alert("Please, sign in or register first! :)")
+                actions.rateMovie(movieInfo, nextValue, movieInfo.poster_path)
+                console.log(nextValue, store.token)
+                
+                return true
     }
+    alert("Please, sign in or register first! :)")
 
 };
 
@@ -133,7 +135,7 @@ return (
                             <button type="button" className="btn btn-light ms-3 comment-btn" onClick={addComment}>Comment</button>
                         </li>
                         {comments?.map((comment, index) => (
-                            <CommentCard username={comment.author_username} content={comment.content} likes={comment.like_total} dislikes={comment.dislike_total} index={index} />
+                            <CommentCard username={comment.author_username} content={comment.content} likes={comment.like_total} dislikes={comment.dislike_total} comment_id={comment.id} index={index} />
                         ))}
                         <li className="comment-item comment-card px-5 text-white mb-4 text-center">
                             {comments.length == 0 ? "No comments yet. Be the first to add a comment!" : ""}

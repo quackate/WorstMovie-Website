@@ -215,3 +215,26 @@
     background-color: rgba(0, 0, 0, 0);
     border: none;
 }
+
+.like-btn, .dislike-btn {
+    cursor: pointer;
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+.like-btn:active, .dislike-btn:active {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    font-weight: bold;
+    text-shadow: 0 0 17px rgba(255, 255, 255, 0.775);
+}

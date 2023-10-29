@@ -13,6 +13,8 @@ class User(db.Model):
     watchlist = db.relationship('Watchlist', backref='user', lazy=True)
     movie_rating = db.relationship('Movie_Rating', backref='user', lazy=True)
     comments = db.relationship('Comments', backref='user', lazy=True)
+    likes = db.relationship('Likes', backref='user', lazy=True)
+    dislikes = db.relationship('Dislikes', backref='user', lazy=True)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -114,6 +116,8 @@ class Comments(db.Model):
     content = db.Column(db.String(120), nullable=False)
     like_total = db.Column(db.Integer, nullable=False)
     dislike_total = db.Column(db.Integer, nullable=True)
+    likes = db.relationship('Likes', backref='comments', lazy=True)
+    dislikes = db.relationship('Dislikes', backref='comments', lazy=True)
 
     def __repr__(self):
         return f'<Comments {self.id}>'
@@ -127,5 +131,38 @@ class Comments(db.Model):
             "like_total": self.like_total,
             "dislike_total": self.dislike_total
         }
+    
+class Likes(db.Model):
+    __tablename__='likes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<Likes {self.id}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "comment_id": self.comment_id
+        }
+    
+class Dislikes(db.Model):
+    __tablename__='dislikes'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<Dislikes {self.id}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "comment_id": self.comment_id
+        }
+
 
         
