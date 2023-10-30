@@ -8,23 +8,20 @@ export const CommentCard = (props) => {
 
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
-    const [like_thumb_weight, setLike_thumb_weight] = useState('far');
-    const [dislike_thumb_weight, setDislike_thumb_weight] = useState('far');
 
+    const like_thumb_weight = 'far';
+    const dislike_thumb_weight = 'far';
 
     const like = () => {
-        if (liked === false) {
-            actions.likeComment(props.likes, props.comment_id)
-            setLiked(true)
-            console.log(liked)
-            setLike_thumb_weight('fas')
+        if (store.liked === false) {
+            actions.likeComment(props.likes, props.comment_id);
+            like_thumb_weight = 'fas';
+            //console.log(liked)
             //window.location.reload();
         }
         else {
             actions.removeLike(props.likes, props.comment_id)
-            setLiked(false)
-            console.log(liked)
-            setLike_thumb_weight('far')
+            like_thumb_weight = 'far';
             //window.location.reload();
         }
     }
@@ -32,23 +29,20 @@ export const CommentCard = (props) => {
     const handleLike = () => {
         if (store.token) {
             like()
+            console.log(store.liked)
         }
         else (alert("Please, sign in or register first! :)"))
     }
 
     const dislike = () => {
-        if (disliked === false) {
-            actions.dislikeComment(props.dislikes, props.comment_id)
-            setDisliked(true)
-            console.log(disliked)
-            setDislike_thumb_weight('fas')
+        if (store.disliked === false) {
+            actions.dislikeComment(props.dislikes, props.comment_id);
+            dislike_thumb_weight = 'fas';
             //window.location.reload();
         }
         else {
             actions.removeDislike(props.dislikes, props.comment_id)
-            setDisliked(false)
-            console.log(disliked)
-            setDislike_thumb_weight('far')
+            dislike_thumb_weight = 'far';
             //window.location.reload();
         }
     }
@@ -91,7 +85,7 @@ export const CommentCard = (props) => {
                 <p>{props.content}</p>
                 <div className="likes-and-dislikes d-flex">
                     <div className="likes d-flex me-4">
-                        <i className={`like-btn ${like_thumb_weight} fa-thumbs-up me-2`} onClick={handleLike}></i>
+                        <i className={`like-btn ${store.liked === false ? 'far' : 'fas'} fa-thumbs-up me-2`} onClick={handleLike}></i>
                         <p>{props.likes}</p>
                     </div>
                     <div className="dislikes d-flex">

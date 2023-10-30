@@ -20,6 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			thriller_movies: [],
 			watchlist: [],
 			comments: [],
+			liked: false,
+			disliked: false,
 			token: null
 		},
 		actions: {
@@ -510,13 +512,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 			
-				fetch(`${process.env.BACKEND_URL}api/comments/like_dislike/${comment_id}`, options)
+				fetch(`${process.env.BACKEND_URL}api/comments/like/${comment_id}`, options)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data)
 						//setLiked(true)
 						const store = getStore();
 						console.log(store.comments)
+						const liked = localStorage.setItem("liked", true)
+						setStore ({ liked: liked })
 						
 						// Update the comment in the store with the new data
 						const updatedComments = store.comments.map(comment => {
@@ -542,12 +546,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 			
-				fetch(`${process.env.BACKEND_URL}api/comments/like_dislike/${comment_id}`, options)
+				fetch(`${process.env.BACKEND_URL}api/comments/dislike/${comment_id}`, options)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data)
 						const store = getStore();
 						console.log(store.comments)
+						setStore ({ disliked: true })
 						
 						// Update the comment in the store with the new data
 						const updatedComments = store.comments.map(comment => {
@@ -573,13 +578,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 			
-				fetch(`${process.env.BACKEND_URL}api/comments/rmv_like_dislike/${comment_id}`, options)
+				fetch(`${process.env.BACKEND_URL}api/comments/rmv_like/${comment_id}`, options)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data)
 						//setLiked(false)
 						const store = getStore();
 						console.log(store.comments)
+						const liked = localStorage.setItem("liked", false)
+						setStore ({ liked: liked })
 						
 						// Update the comment in the store with the new data
 						const updatedComments = store.comments.map(comment => {
@@ -605,12 +612,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				}
 			
-				fetch(`${process.env.BACKEND_URL}api/comments/rmv_like_dislike/${comment_id}`, options)
+				fetch(`${process.env.BACKEND_URL}api/comments/rmv_dislike/${comment_id}`, options)
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data)
 						const store = getStore();
 						console.log(store.comments)
+						setStore ({ disliked: false })
 						
 						// Update the comment in the store with the new data
 						const updatedComments = store.comments.map(comment => {

@@ -22,13 +22,13 @@
 }
 
 .info-button {
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: bold;
     height: 32px;
     margin-left: 13px;
     border-radius: 20px;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.512);
-    padding: 5px 8px;
-    font-family: 'Bungee';
+    padding: 5px 10px;
 }
 
 .lighter {
@@ -37,6 +37,11 @@
 
 .lighter:hover {
     text-shadow: 0 0 15px rgb(255, 255, 255);
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+    -o-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
 }
 
 .lighter:active {

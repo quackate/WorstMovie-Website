@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Login, Movies, Watchlist, Movie_Rating, Comments, Likes
+from api.models import db, User, Login, Movies, Watchlist, Movie_Rating, Comments, Likes, Dislikes
 from api.utils import generate_sitemap, APIException
 from flask_cors import cross_origin, CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
@@ -314,7 +314,7 @@ def get_comment(movie_id):
     return jsonify(comment_array), 200
 
 #Something I'm trying
-@api.route('/comments/like_dislike/<int:comment_id>', methods=['POST'])
+@api.route('/comments/like/<int:comment_id>', methods=['POST'])
 @jwt_required()
 def like_comment(comment_id):
     if request.method == 'POST':
@@ -343,15 +343,13 @@ def like_comment(comment_id):
         # Update like_total and dislike_total if they are present in the request
         if 'like_total' in data:
             comment.like_total = data['like_total'] + 1
-        if 'dislike_total' in data:
-            comment.dislike_total = data['dislike_total'] + 1
 
         db.session.commit()
 
         return jsonify({'message': 'Comment liked successfully'}, comment.serialize()), 200
 
 
-@api.route('/comments/rmv_like_dislike/<int:comment_id>', methods=['PUT'])
+@api.route('/comments/rmv_like/<int:comment_id>', methods=['PUT'])
 @jwt_required()
 def remove_like(comment_id):
     if request.method == 'PUT':
@@ -382,23 +380,53 @@ def remove_like(comment_id):
 
         return jsonify({'message': 'Comment liked removed successfully'}, comment.serialize()), 200
 
-
-#Trying this to see if it works
-@api.route('/comments/<int:comment_id>/like', methods=['POST'])
+@api.route('/comments/dislike/<int:comment_id>', methods=['POST'])
 @jwt_required()
-def user_liked(comment_id):
-    user_id = get_jwt_identity()
+def dislike_comment(comment_id):
+    if request.method == 'POST':
+        data = request.json
+        user_id = get_jwt_identity()
+        comment = Comments.query.get(comment_id)
 
-    comment = Comments.query.get(comment_id)
-    if not comment:
-        return jsonify({'message': 'Comment not found'}), 404
+        if not comment:
+            return jsonify({'message': 'Comment not found'}), 404
 
-    user_liked = Likes.query.filter_by(user_id=user_id, comment_id=comment_id).first()
-    if user_liked:
-        return jsonify({'message': 'You have already liked this comment'}), 400
+        user_disliked = Dislikes.query.filter_by(user_id=user_id, comment_id=comment_id).first()
+        if user_disliked:
+            return jsonify({'message': 'You have already disliked this comment'}), 400
 
-    like = Likes(user_id=user_id, comment_id=comment_id)
-    db.session.add(like)
-    db.session.commit()
+        dislike = Dislikes(user_id=user_id, comment_id=comment_id)
+        db.session.add(dislike)
+        db.session.commit()
 
-    return jsonify({'message': 'Comment liked successfully'}), 200
+        if 'dislike_total' in data:
+            comment.dislike_total = data['dislike_total'] + 1
+
+        db.session.commit()
+
+        return jsonify({'message': 'Comment disliked successfully'}, comment.serialize()), 200
+    
+@api.route('/comments/rmv_dislike/<int:comment_id>', methods=['PUT'])
+@jwt_required()
+def remove_dislike(comment_id):
+    if request.method == 'PUT':
+        data = request.json
+        user_id = get_jwt_identity()
+        comment = Comments.query.get(comment_id)
+
+        if not comment:
+            return jsonify({'message': 'Comment not found'}), 404
+        
+        user_disliked = Dislikes.query.filter_by(user_id=user_id, comment_id=comment_id).first()
+        if not user_disliked:
+            return jsonify({"message": "You haven't disliked this comment"}), 400
+
+        db.session.delete(user_disliked)
+        db.session.commit()
+
+        if 'dislike_total' in data:
+            comment.dislike_total = data['dislike_total'] - 1
+
+        db.session.commit()
+
+        return jsonify({'message': 'Comment disliked removed successfully'}, comment.serialize()), 200
