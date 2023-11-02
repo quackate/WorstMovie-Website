@@ -17,7 +17,7 @@ export const Crime_Genre = () => {
             <h1 className="genrepage-title mb-5 text-center"><span className="genrepage-purple">Crime</span> Movies <i className="fas fa-film film-icon"></i></h1>
 			<div className="">
 					{store.crime_movies?.map((movies) => (
-						<GenreCard img_src={movies.poster_path} title={movies.title} rating={movies.vote_average} date={movies.release_date} description={movies.overview} id={movies.id}/>
+						<GenreCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} date={movies.release_date} description={movies.overview} id={movies.id}/>
 					))}
 				</div>
 		</div>
