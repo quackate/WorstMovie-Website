@@ -74,7 +74,7 @@ export const CommentCard = (props) => {
                         {
                             store.user_id === props.author_id ? (
                                 <ul className="dropdown-menu dropdown-comments dropdown-menu-dark dropdown-menu-end">
-                                    <li className="dropdown-item"><i className="fas fa-pencil-alt me-3"></i>Edit</li>
+                                    {/*<li className="dropdown-item"><i className="fas fa-pencil-alt me-3"></i>Edit</li>*/}
                                     <li className="dropdown-item" onClick={handleDelete}><i className="far fa-trash-alt me-3"></i>Delete</li>
                                 </ul>
                             ) :

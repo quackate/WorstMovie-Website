@@ -63,7 +63,7 @@
 .rating-details {
     display: flex;
     align-items: center;
-    background-color: rgba(70, 70, 70, 0.336);
+    background-color: rgba(24, 24, 24, 0.344);
     border-radius: 30px;
     padding-left: 27px;
     padding-top: 16px;
@@ -74,6 +74,10 @@
     border-width: 1px;
     border-color: grey;
     font-family: 'Bungee';
+}
+
+.dv-star-rating-empty-star {
+    color: rgb(95, 95, 95) !important;
 }
 
 .rating .react-star-rating__star {

@@ -30,11 +30,6 @@ export const Detail = () => {
         else (alert("Please, sign in or register first! :)"))
     }
 
-    /*const addComment = () => {
-        {store.token ?
-            (actions.addComment(movieInfo.id, newComment) && setNewComment("")) : alert("Please, sign in or register first! :)")}
-    }*/
-
 //const deleteComment = (i) => {
     //setComments(comments.filter((l, currentIndex) => i != currentIndex));
 //}
