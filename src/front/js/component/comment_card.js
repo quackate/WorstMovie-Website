@@ -28,7 +28,7 @@ export const CommentCard = (props) => {
 
     const handleLike = () => {
         if (store.token) {
-            like()
+            like();
             console.log(store.liked)
         }
         else (alert("Please, sign in or register first! :)"))

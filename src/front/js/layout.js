@@ -9,22 +9,22 @@ import { Resset } from "./pages/resset";
 import { Set_NewPassword } from "./pages/new_password";
 import { Trailer } from "./pages/trailer-single";
 
-import { Horror_Genre } from "./pages/horror_genre";
-import { Romance_Genre } from "./pages/romance_genre";
-import { Action_Genre } from "./pages/action_genre";
-import { Adventure_Genre } from "./pages/adventure_genre";
-import { Animation_Genre } from "./pages/animation_genre";
-import { Comedy_Genre } from "./pages/comedy_genre";
-import { Crime_Genre } from "./pages/crime_genre";
-import { Documentary_Genre } from "./pages/documentary_genre";
-import { Drama_Genre } from "./pages/drama_genre";
-import { Family_Genre } from "./pages/family_genre";
-import { Fantasy_Genre } from "./pages/fantasy_genre";
-import { History_Genre } from "./pages/history_genre";
-import { Music_Genre } from "./pages/music_genre";
-import { Mystery_Genre } from "./pages/mystery_genre";
-import { ScienceFiction_Genre } from "./pages/sciencefiction_genre";
-import { Thriller_Genre } from "./pages/thriller_genre";
+import { Horror_Genre } from "./pages/genre_views/horror_genre";
+import { Romance_Genre } from "./pages/genre_views/romance_genre";
+import { Action_Genre } from "./pages/genre_views/action_genre";
+import { Adventure_Genre } from "./pages/genre_views/adventure_genre";
+import { Animation_Genre } from "./pages/genre_views/animation_genre";
+import { Comedy_Genre } from "./pages/genre_views/comedy_genre";
+import { Crime_Genre } from "./pages/genre_views/crime_genre";
+import { Documentary_Genre } from "./pages/genre_views/documentary_genre";
+import { Drama_Genre } from "./pages/genre_views/drama_genre";
+import { Family_Genre } from "./pages/genre_views/family_genre";
+import { Fantasy_Genre } from "./pages/genre_views/fantasy_genre";
+import { History_Genre } from "./pages/genre_views/history_genre";
+import { Music_Genre } from "./pages/genre_views/music_genre";
+import { Mystery_Genre } from "./pages/genre_views/mystery_genre";
+import { ScienceFiction_Genre } from "./pages/genre_views/sciencefiction_genre";
+import { Thriller_Genre } from "./pages/genre_views/thriller_genre";
 
 import injectContext from "./store/appContext";
 

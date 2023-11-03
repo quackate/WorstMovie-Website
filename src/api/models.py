@@ -113,7 +113,7 @@ class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'), nullable=False)
-    content = db.Column(db.String(120), nullable=False)
+    content = db.Column(db.String(3000), nullable=False)
     like_total = db.Column(db.Integer, nullable=False)
     dislike_total = db.Column(db.Integer, nullable=True)
     likes = db.relationship('Likes', backref='comments', lazy=True)
