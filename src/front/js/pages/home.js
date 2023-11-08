@@ -1,7 +1,7 @@
-import React, { useContext , useState , useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { MovieCard } from "../component/movie-card";
 import { Watchlist_Item } from "../component/watchlist-item";
@@ -30,7 +30,7 @@ export const Home = () => {
 			nav('/login')
 		  }
 	  },[])*/
-	
+
 	return (
 		<div className="main-wrapper mt-5">
 			<div className="wrapper-first-section">
@@ -45,12 +45,12 @@ export const Home = () => {
 							</div>
 						</div>
 						<div className="topten-section">
-						{topTen.slice(0, 1).map((movies, index) => (
-									<BigTen image={movies.image} title={movies.title} id={movies.id}/>
-								))}
+							{topTen.slice(0, 1).map((movies, index) => (
+								<BigTen image={movies.image} title={movies.title} id={movies.id} />
+							))}
 							<div className="restof-topt-section row g-0">
-							{topTen.slice(1).map((movies, index) => (
-									<SmallTen image={movies.image} title={movies.title} number={index+2} id={movies.id}/>
+								{topTen.slice(1).map((movies, index) => (
+									<SmallTen image={movies.image} title={movies.title} number={index + 2} id={movies.id} />
 								))}
 							</div>
 						</div>
@@ -64,11 +64,19 @@ export const Home = () => {
 									<i className="fa-solid fa-bookmark fs-1 mb-4 watchlist-bookmark"></i>
 									<h3><strong>Your watchlist is empty</strong></h3>
 									<h5>Save some movies you want to watch here!</h5>
-									<button type="button" className="btn btn-light watchlist-btn mt-5"><a className="button-link" href='#movies-selection'>Browse Movies!</a></button>
+									<div class="watchlist-browse-btn mt-5">
+										<a className="watchlist-btn-link" href="#movies-selection">
+											<span className="span-border span1"></span>
+											<span className="span-border span2"></span>
+											<span className="span-border span3"></span>
+											<span className="span-border span4"></span>
+											Browse Movies!
+										</a>
+									</div>
 								</div>
 							) : <div>
 								{watchlist?.map((movies, index) => (
-									<Watchlist_Item img_src={movies.image} title={movies.title} rating={movies.rating} index={index} id={movies.id}/>
+									<Watchlist_Item img_src={movies.image} title={movies.title} rating={movies.rating} index={index} id={movies.id} />
 								))} </div>
 							}
 							{!store.token ? (
@@ -76,9 +84,15 @@ export const Home = () => {
 									<i className="fa-solid fa-bookmark fs-1 mb-4"></i>
 									<h4 className="mb-3"><strong>Looks like you're not <br></br>logged in!</strong></h4>
 									<h5>Sign in or register to add some movies to your watchlist!</h5>
-									<Link to='/login'>
-										<button type="button" className="watchlist-signin-btn btn btn-outline-light mt-4">Go to Sign In!</button>
-									</Link>
+									<div class="watchlist-signin-btn mt-5">
+										<a className="watchlist-btn-link" href="/login">
+											<span className="span-border span1"></span>
+											<span className="span-border span2"></span>
+											<span className="span-border span3"></span>
+											<span className="span-border span4"></span>
+											Go to Sign In!
+										</a>
+									</div>
 								</div>
 							) : ""}
 						</div>
@@ -99,19 +113,19 @@ export const Home = () => {
 				<h1 className="genre-title title mt-5 mb-3"><i className="light-yellow fas fa-caret-right"></i> Horror</h1>
 				<div className="movies-by-genre-section h-scrollbar d-flex">
 					{store.horror_movies?.map((movies) => (
-						<MovieCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} id={movies.id}/>
+						<MovieCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} id={movies.id} />
 					))}
 				</div>
 				<h1 className="genre-title title mt-5 mb-3"><i className="light-yellow fas fa-caret-right"></i> Romance</h1>
 				<div className="movies-by-genre-section h-scrollbar d-flex">
 					{store.romance_movies?.map((movies) => (
-						<MovieCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} id={movies.id}/>
+						<MovieCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} id={movies.id} />
 					))}
 				</div>
 				<h1 className="genre-title title mt-5 mb-3"><i className="light-yellow fas fa-caret-right"></i> Action</h1>
 				<div className="movies-by-genre-section h-scrollbar d-flex">
 					{store.action_movies?.map((movies) => (
-						<MovieCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} id={movies.id}/>
+						<MovieCard poster_path={movies.poster_path} title={movies.title} vote_average={movies.vote_average} id={movies.id} />
 					))}
 				</div>
 			</div>
