@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link, useNavigate } from "react-router-dom";
+import { WavyContainer, WavyLink } from "react-wavy-transitions";
 
 import { MovieCard } from "../component/movie-card";
 import { Watchlist_Item } from "../component/watchlist-item";
@@ -84,15 +85,18 @@ export const Home = () => {
 									<i className="fa-solid fa-bookmark fs-1 mb-4"></i>
 									<h4 className="mb-3"><strong>Looks like you're not <br></br>logged in!</strong></h4>
 									<h5>Sign in or register to add some movies to your watchlist!</h5>
-									<div class="watchlist-signin-btn mt-5">
-										<a className="watchlist-btn-link" href="/login">
-											<span className="span-border span1"></span>
-											<span className="span-border span2"></span>
-											<span className="span-border span3"></span>
-											<span className="span-border span4"></span>
-											Go to Sign In!
-										</a>
-									</div>
+									<WavyContainer/>
+									<WavyLink to="/login" color="#8f44fd" duration={950}>
+										<div class="watchlist-signin-btn mt-5">
+											<p className="watchlist-btn-link">
+												<span className="span-border span1"></span>
+												<span className="span-border span2"></span>
+												<span className="span-border span3"></span>
+												<span className="span-border span4"></span>
+												Go to Sign In!
+											</p>
+										</div>
+									</WavyLink>
 								</div>
 							) : ""}
 						</div>

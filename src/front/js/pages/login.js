@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css";
 import { Context } from "../store/appContext";
+import { WavyContainer, WavyLink } from "react-wavy-transitions";
 
 export const Login = () => {
   const [email, setEmail] = useState();
@@ -18,10 +19,11 @@ export const Login = () => {
 
   return (
     <form className="text-center my-5" onSubmit={handleSubmit}>
+      <WavyContainer />
       <div className="login-logo-wrapper mt-5 mb-2">
-        <Link to='/'>
+        <WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
           <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="login-logo" />
-        </Link>
+        </WavyLink>
       </div>
       <div className="login-wrapper">
         <h1 className="text-light mt-4"><span className="purple-login-title">Sign</span> in<span className="yellow-login-title">!</span></h1>
@@ -39,7 +41,7 @@ export const Login = () => {
                 placeholder="Type your password here"
                 id="exampleInputPassword1" onChange={(e) => setPassword(e.target.value)} />
               <Link to="/resset">
-              <p className="mt-3">Forgot your password?</p>
+                <p className="mt-3">Forgot your password?</p>
               </Link>
             </div>
             <div className="text-center justify-content-center d-flex mt-5">

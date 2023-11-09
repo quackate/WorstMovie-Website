@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import "../../styles/registration.css";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
+import { WavyContainer, WavyLink } from "react-wavy-transitions";
+
 export const Registration = () => {
   const [userName, setUserName] = useState();
   const { store, actions } = useContext(Context);
@@ -19,10 +21,11 @@ export const Registration = () => {
 
   return (
     <form className="text-center" onSubmit={handleSubmit} action="/login">
+      <WavyContainer />
       <div className="logo-wrapper mt-5 mb-2">
-        <Link to='/'>
+        <WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
           <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reg-logo" />
-        </Link>
+        </WavyLink>
       </div>
       <div className="form-wrapper mb-5">
         <h2 className="text-light-reg mt-4"><span className="purple-reg-title">Create</span> Account<span className="yellow-reg-title">!</span></h2>

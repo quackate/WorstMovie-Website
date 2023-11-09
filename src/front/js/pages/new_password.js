@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import "../../styles/resset.css";
 import { Context } from "../store/appContext";
+import { WavyContainer, WavyLink } from "react-wavy-transitions";
 
 export const Set_NewPassword = () => {
     const { store, actions } = useContext(Context);
@@ -24,10 +25,11 @@ export const Set_NewPassword = () => {
 
     return (
         <form className="text-center my-5" onSubmit={handleSubmit}>
+            <WavyContainer />
             <div className="reset-logo-wrapper mt-5 mb-2">
-                <Link to='/'>
+                <WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
                     <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reset-logo" />
-                </Link>
+                </WavyLink>
             </div>
             <div className="reset-wrapper">
                 <h1 className="reset-text-light mt-4"><span className="purple-reset-title">Reset</span> Password<span className="yellow-reset-title">!</span></h1>
