@@ -21,11 +21,10 @@ export const Registration = () => {
 
   return (
     <form className="text-center" onSubmit={handleSubmit} action="/login">
-      <WavyContainer />
       <div className="logo-wrapper mt-5 mb-2">
-        <WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
+        <Link to="/">
           <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reg-logo" />
-        </WavyLink>
+        </Link>
       </div>
       <div className="form-wrapper mb-5">
         <h2 className="text-light-reg mt-4"><span className="purple-reg-title">Create</span> Account<span className="yellow-reg-title">!</span></h2>

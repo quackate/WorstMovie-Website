@@ -113,13 +113,12 @@ export const Navbar = () => {
 	return (
 		<div>
 			<nav className="navbar navbar-light ">
-			<WavyContainer />
 				<div className="container">
-					<WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
+					<Link to="/">
 						<span className="navbar-brand mb-0">
 							<img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="logo" />
 						</span>
-					</WavyLink>
+					</Link>
 					<div className="dropdown more-genres me-auto ms-2">
 						<button className="btn btn-light dropdown-toggle genres-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">Movies by genre&nbsp;&nbsp;</button>
 						<ul className="dropdown-genres dropdown-menu dropdown-menu-dark scrollbar">
@@ -197,14 +196,14 @@ export const Navbar = () => {
 
 					</form>
 					<div className="ml-auto">
-						<WavyLink to="/login" color="#8f44fd" duration={950}>
+						<Link to="/login">
 							<div className="dropdown">
 								{store.token ?
 									<button className="btn btn-light nav-login-btn" onClick={actions.logout} type="button">Sign Out</button> :
 									<button className="btn btn-light nav-login-btn" type="button">Sign In</button>
 								}
 							</div>
-						</WavyLink>
+						</Link>
 					</div>
 				</div>
 			</nav>

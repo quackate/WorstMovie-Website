@@ -19,11 +19,14 @@ export const Login = () => {
 
   return (
     <form className="text-center my-5" onSubmit={handleSubmit}>
-      <WavyContainer />
+      {/*<WavyContainer />*/}
       <div className="login-logo-wrapper mt-5 mb-2">
-        <WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
+        {/*<WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
           <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="login-logo" />
-        </WavyLink>
+        </WavyLink>*/}
+        <Link to="/">
+          <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="login-logo" />
+        </Link>
       </div>
       <div className="login-wrapper">
         <h1 className="text-light mt-4"><span className="purple-login-title">Sign</span> in<span className="yellow-login-title">!</span></h1>

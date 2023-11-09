@@ -25,11 +25,10 @@ export const Set_NewPassword = () => {
 
     return (
         <form className="text-center my-5" onSubmit={handleSubmit}>
-            <WavyContainer />
             <div className="reset-logo-wrapper mt-5 mb-2">
-                <WavyLink to="/" direction="up" color="#8f44fd" duration={950}>
+                <Link to="/">
                     <img src="https://i.postimg.cc/RVH9yJfR/movie-resized-logo.png" className="reset-logo" />
-                </WavyLink>
+                </Link>
             </div>
             <div className="reset-wrapper">
                 <h1 className="reset-text-light mt-4"><span className="purple-reset-title">Reset</span> Password<span className="yellow-reset-title">!</span></h1>

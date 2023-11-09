@@ -85,8 +85,9 @@ export const Home = () => {
 									<i className="fa-solid fa-bookmark fs-1 mb-4"></i>
 									<h4 className="mb-3"><strong>Looks like you're not <br></br>logged in!</strong></h4>
 									<h5>Sign in or register to add some movies to your watchlist!</h5>
-									<WavyContainer/>
-									<WavyLink to="/login" color="#8f44fd" duration={950}>
+									{/*<WavyContainer/>*/}
+									{/*<WavyLink to="/login" color="#8f44fd" duration={950}>*/}
+									<Link to="/login" style={{ textDecoration: 'none' }}>
 										<div class="watchlist-signin-btn mt-5">
 											<p className="watchlist-btn-link">
 												<span className="span-border span1"></span>
@@ -96,7 +97,8 @@ export const Home = () => {
 												Go to Sign In!
 											</p>
 										</div>
-									</WavyLink>
+									</Link>
+									{/*</WavyLink>*/}
 								</div>
 							) : ""}
 						</div>
